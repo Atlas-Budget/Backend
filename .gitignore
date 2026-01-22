@@ -1,0 +1,18 @@
+## Build
+bin/
+obj/
+
+## User secrets
+secrets.json
+
+## Environment
+appsettings.Development.json
+
+## IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+## Logs
+*.log
