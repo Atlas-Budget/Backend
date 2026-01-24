@@ -231,14 +231,14 @@ public class AuthController : ControllerBase
 
     private CookieOptions BuildRefreshCookieOptions(bool rememberMe)
     {
-        var isDev = _env.IsDevelopment();
-
         return new CookieOptions
         {
             HttpOnly = true,
-            SameSite = SameSiteMode.Lax,
-            Secure = !isDev, // dev: permite http. prod: exige https
-            Expires = rememberMe ? DateTimeOffset.UtcNow.AddDays(30) : DateTimeOffset.UtcNow.AddDays(1),
+            Secure = true,                // obrigatório com SameSite=None
+            SameSite = SameSiteMode.None, // essencial para cross-origin
+            Expires = rememberMe
+                ? DateTimeOffset.UtcNow.AddDays(30)
+                : DateTimeOffset.UtcNow.AddDays(1),
             Path = "/"
         };
     }
