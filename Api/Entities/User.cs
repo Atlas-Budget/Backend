@@ -11,4 +11,5 @@ public class User
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
 
     public List<RefreshToken> RefreshTokens { get; set; } = new();
+    public List<Transaction> Transactions { get; set; } = new();
 }
