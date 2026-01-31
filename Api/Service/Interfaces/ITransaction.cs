@@ -1,21 +1,21 @@
-using Api.Dtos.Contracts.Transactions;
+using Api.Dtos.Transactions.Get;
+using Api.Dtos.Transactions.Set;
 
 namespace Api.Service.Interfaces;
 
 public interface ITransactionService
 {
-	Task CreateAsync(Guid userId, CreateTransactionRequest request);
+    Task<Guid> CreateTransaction(Guid userId, CreateTransactionRequest request);
 
-	Task<TransactionSummaryResponse> GetAsync(
-			Guid userId,
-			DateTimeOffset start,
-			DateTimeOffset end);
+    Task<TransactionResponse> GetTransaction(Guid userId, Guid transactionId);
 
-	Task UpdateAsync(
-		Guid userId,
-		Guid transactionId,
-		CreateTransactionRequest request
-	);
+    Task UpdateTransaction(Guid userId, Guid transactionId, CreateTransactionRequest request);
 
-	Task DeleteAsync(Guid userId, Guid transactionId);
+    Task DeleteTransaction(Guid userId, Guid transactionId);
+
+    Task<TransactionSummaryResponse> GetTransactionsResume(
+        Guid userId,
+        DateTime startDate,
+        DateTime endDate
+    );
 }

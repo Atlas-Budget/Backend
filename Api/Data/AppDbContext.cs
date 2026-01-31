@@ -16,9 +16,6 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // =========================
-        // User
-        // =========================
         modelBuilder.Entity<User>(e =>
         {
             e.HasIndex(x => x.Email).IsUnique();
@@ -27,9 +24,6 @@ public class AppDbContext : DbContext
             e.Property(x => x.PasswordHash).HasMaxLength(512).IsRequired();
         });
 
-        // =========================
-        // RefreshToken
-        // =========================
         modelBuilder.Entity<RefreshToken>(e =>
         {
             e.Property(x => x.TokenHash).HasMaxLength(512).IsRequired();
@@ -42,14 +36,11 @@ public class AppDbContext : DbContext
              .OnDelete(DeleteBehavior.Cascade);
         });
 
-        // =========================
-        // Transaction
-        // =========================
         modelBuilder.Entity<Transaction>(e =>
         {
             e.HasKey(x => x.Id);
 
-            e.Property(x => x.Amount)
+            e.Property(x => x.TotalAmount)
              .HasPrecision(18, 2)
              .IsRequired();
 
@@ -69,11 +60,6 @@ public class AppDbContext : DbContext
             e.HasIndex(x => new { x.UserId, x.StartDate });
             e.HasIndex(x => x.Type);
             e.HasIndex(x => x.Timing);
-
-            e.HasOne(x => x.User)
-             .WithMany(u => u.Transactions)
-             .HasForeignKey(x => x.UserId)
-             .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

@@ -5,19 +5,12 @@ public enum TransactionType
 }
 public enum TransactionTiming
 {
-    Single = 1,        // Uma vez só
-    Recurring = 2,     // Para sempre (ou até parar)
+    Single = 1,
+    Recurring = 2,
     Installment = 3    
 }
 public enum RecurrenceFrequency
 {
-    Daily = 1,
-    Weekly = 2,
-    Monthly = 3
-}
-public enum FrequencyType
-{
-    Once = 0,
     Daily = 1,
     Weekly = 2,
     Monthly = 3
